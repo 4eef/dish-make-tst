@@ -1,9 +1,20 @@
+CC=gcc
+
 .PHONY: clean build
 
 clean:
-rm -rf hello *.o
+    rm -rf hello *.o
 
-build: helloWorld.c
-gcc -o hello helloWorld.c
+%.o: %.c
+    $(CC) -c -o $@ $<
+    
+#hello.o: hello.c
+#    $(CC) -c -o hello.o hello.c
 
-#UNFINISHED
+#main.o: main.c
+#    $(CC) -c -o main.o main.c
+
+build: hello.o main.o
+    $(CC) -o hello hello.o main.c
+
+#UNBUILT
